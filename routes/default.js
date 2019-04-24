@@ -1,7 +1,7 @@
 const express  = require('express');
 const utils    = require('../utils');
 const router   = express.Router();
-const database = require('./db');
+const user = require('../mongoDB/userModel');
 
 /* Returns if user is logged in, with a status */
 router.get('/isLoggedIn', (request, response) => {
@@ -34,11 +34,14 @@ router.get('/personalInfo', (request, response) => {
             'message': 'Access denied'
         })
     } else {
-        response.json({
-            'status': 'ok',
-            'name': database[request.session.username].name,
-            'theSecret': '<img width="250px" src="img/theworstofthesecrets.jpg">'
-        })
+        user.findOne({userName:request.session.username}, function (err, u) { // looks for the user in the database
+            if (err) return next(err);
+            response.json({
+                'status': 'ok',
+                'name': u.userName,
+                'theSecret': '<img width="250px" src="img/theworstofthesecrets.jpg">'
+            })
+        });
     }
 });
 

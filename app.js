@@ -16,7 +16,7 @@ const iso_3166_1    = require('iso-3166-1');
 /* ----- path constants ----- */
 const config        = require('./config.json');
 const defaultroutes = require('./routes/default');
-const webAuthnAuthentication  = require('./routes/webauthn');
+const webAuthnAuthentication  = require('./routes/webauthn2FA');
 
 /* ----- express web framework constant ----- */
 const app           = express();
