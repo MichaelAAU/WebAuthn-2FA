@@ -25,6 +25,7 @@ $('#register').submit(function(event) {
             })
             .then((response) => {
                 if (response.status === 'ok') {
+                    $('body').css('backgroundImage', 'url(/img/Bank2.jpg)');
                     loadMainContainer()
                 } else {
                     alert(`Server responded with error. The message is: ${response.message}`);
@@ -45,6 +46,7 @@ $('#register').submit(function(event) {
             })
             .then((response) => {
                 if (response.status === 'ok') {
+                    $('body').css('backgroundImage', 'url(/img/Bank2.jpg)');
                     loadMainContainer()
                 } else {
                     alert(`Server responded with error. The message is: ${response.message}`);
@@ -114,6 +116,7 @@ $('#login').submit(function(event) {
             })
             .then((response) => {
                 if (response.status === 'ok') {
+                    $('body').css('backgroundImage', 'url(/img/Bank2.jpg)');
                     loadMainContainer()
                 } else {
                     alert(`Server responded with error. The message is: ${response.message}`);
@@ -133,6 +136,7 @@ $('#login').submit(function(event) {
             })
             .then((response) => {
                 if (response.status === 'ok') {
+                    $('body').css('backgroundImage', 'url(/img/Bank2.jpg)');
                     loadMainContainer()
                 } else {
                     alert(`Server responded with error. The message is: ${response.message}`);

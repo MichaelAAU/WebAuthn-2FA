@@ -32,28 +32,27 @@ router.post('/register', (request, response) => {
         }
     });
 
-    user.create({ // creates a new user in the database
+    user.create({ // creates a new user in the database and a request for credentials
         userName: username,
         fullName: name,
         password: password,
         userId: userid,
         authenticators: []}, function(err, u) {
         if (err) return next(err);
+        if(!password) {
+            var challengeMakeCred = utils.generateServerMakeCredRequestUV(username, name, userid);
+        }
+        else {
+            var challengeMakeCred = utils.generateServerMakeCredRequest(username, name, userid);
+        }
+        challengeMakeCred.status = 'ok';
+
+        request.session.challenge = challengeMakeCred.challenge;
+        request.session.username  = username;
+
+        response.json(challengeMakeCred);
+        console.log(challengeMakeCred)
     });
-
-    if(!password) {
-        var challengeMakeCred = utils.generateServerMakeCredRequestUV(username, name, userid);
-    }
-    else {
-        var challengeMakeCred = utils.generateServerMakeCredRequest(username, name, userid);
-    }
-    challengeMakeCred.status = 'ok';
-
-    request.session.challenge = challengeMakeCred.challenge;
-    request.session.username  = username;
-
-    response.json(challengeMakeCred);
-    console.log(challengeMakeCred)
 });
 
 

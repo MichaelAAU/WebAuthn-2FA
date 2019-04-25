@@ -38,8 +38,8 @@ router.get('/personalInfo', (request, response) => {
             if (err) return next(err);
             response.json({
                 'status': 'ok',
-                'name': u.userName,
-                'theSecret': '<img width="250px" src="img/theworstofthesecrets.jpg">'
+                'name': u.fullName,
+                'theSecret': '<img width="500px" src="img/Balance.png">'
             })
         });
     }

@@ -38,7 +38,7 @@ let loadMainContainer = () => {
 
 $('#logoutButton').click(() => {
     fetch('/logout', {credentials: 'include'});
-
+    $('body').css('backgroundImage', 'url(/img/Bank1.jpg)');
     $('#registerContainer').hide();
     $('#mainContainer').hide();
     $('#loginContainer').show();

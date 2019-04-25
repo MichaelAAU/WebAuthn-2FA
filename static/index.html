@@ -8,6 +8,19 @@
             height: 100%;
         }
 
+        .container {
+            width: 60%;
+            opacity: 0.8;
+            bottom: 120px;
+            right: 200px;
+        }
+
+        body {
+            background: url('/img/Bank1.jpg');
+            background-size: cover;
+            min-width: 320px;
+        }
+
         .formcontainer {
             background: #f0f0f0;
             padding: 15px;
@@ -36,11 +49,11 @@
                     <h3>Register page</h3>
                     <form id="register">
                       <fieldset>
-                        <label for="name">Name:</label>
+                        <label for="name">Your Full Name:</label>
                         <input type="text" name="name">
                         <label for="username">Username:</label>
                         <input type="text" name="username">
-                          <label for="password">If you do not possess a YubiKey 5, please enter a Password:</label>
+                          <label for="password">If your Security Key has no PIN/Biometric, please enter a Password:</label>
                           <input type="text" name="password">
 
                         <input class="button-primary" type="submit" value="Register">
@@ -56,9 +69,9 @@
                     <h3>Login page</h3>
                     <form id="login">
                       <fieldset>
-                        <label for="username">Username</label>
+                        <label for="username">Username:</label>
                         <input type="text" name="username">
-                          <label for="password">If you do not possess a YubiKey 5, please enter a Password:</label>
+                          <label for="password">If your Security Key has no PIN/Biometric, please enter a Password:</label>
                           <input type="text" name="password">
 
                         <input class="button-primary" type="submit" value="Login">
@@ -72,7 +85,7 @@
             <div class="column" id="mainContainer">
 
                 <div class="secretcontainer">
-                    <h3>Hey <span id="name"></span>!</h3>
+                    <h3>Hey <span id="name"></span>! You are Logged In!</h3>
                     <div id="theSecret"></div>
                     <button id="logoutButton">Logout</button>
                 </div>
