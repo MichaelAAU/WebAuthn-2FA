@@ -12,6 +12,11 @@ $('#register').submit(function(event) {
         alert('Name or username is missing!');
         return
     }
+    let re = /\S+@\S+\.\S+/;
+    if(re.test(username)) { // does not permit email as a username, for more privacy
+        alert('Username cannot be an email!');
+        return
+    }
     if(!password) {
         getMakeCredentialsChallenge({username, name})
             .then((response) => {

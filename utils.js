@@ -35,7 +35,8 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
         challenge: randomBase64URLBuffer(32),
 
         rp: {
-            name: "Test Website #1"
+            name: "Your Bank"
+            // id: "yourBank.com"
         },
 
         user: {

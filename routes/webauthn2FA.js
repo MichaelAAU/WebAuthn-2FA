@@ -144,21 +144,35 @@ router.post('/login', (request, response) => {
     let username = request.body.username;
     let password = request.body.password;
 
+    let fakeCredId = false;
     user.findOne({userName:username}, function (err, u) { // looks for the user in the database
         if (err) return next(err);
-        if(u == null || u.password !== password || !u.registered) { // checks registered username & password
-            response.json({
-                'status': 'failed',
-                'message': `Wrong username or password!`
+        if(u == null || u.password !== password || !u.registered) { // checks registered username & correct password
+            if (password) {
+                response.json({
+                    'status': 'failed',
+                    'message': `Wrong username or password!`
+                });
+                return
+            }
+            fakeCredId = true; // will create fakeCredIds instead of revealing wrong username, for privacy!
+            let allowCredentials = [];
+            allowCredentials.push({
+                type: 'public-key',
+                id: utils.randomBase64URLBuffer(32),
+                transports: ['usb', 'nfc', 'ble']
             });
-
-            return
+            var getAssertion = {
+                challenge: utils.randomBase64URLBuffer(32),
+                allowCredentials: allowCredentials,
+                userVerification: "preferred"
+            }
         }
-        if(!password) {
-            var getAssertion = utils.generateServerGetAssertionUV(u.authenticators);
-        }
-        else {
+        if(password) {
             var getAssertion = utils.generateServerGetAssertion(u.authenticators);
+        }
+        else if (!fakeCredId) {
+            var getAssertion = utils.generateServerGetAssertionUV(u.authenticators);
         }
         getAssertion.status = 'ok';
 
