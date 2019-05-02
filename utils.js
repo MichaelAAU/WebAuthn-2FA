@@ -35,8 +35,8 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
         challenge: randomBase64URLBuffer(32),
 
         rp: {
-            name: "Your Bank"
-            // id: "yourBank.com"
+            name: "Nordea Bank"//,
+            //id: "nordea.dk"
         },
 
         user: {
@@ -48,6 +48,10 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
         attestation: 'direct', // we need to receive an attestation from the authenticator
 
         pubKeyCredParams: [
+            {
+                type: "public-key",
+                alg: -257 // Value registered by this specification for "RS256"
+            },
             {
                 type: "public-key", alg: -7 // "ES256" IANA COSE Algorithms registry
             }
@@ -74,7 +78,8 @@ let generateServerMakeCredRequestUV = (username, displayName, id) => {
         challenge: randomBase64URLBuffer(32),
 
         rp: {
-            name: "Test Website #1"
+            name: "Nordea Bank"//,
+            //id :"nordea.dk"
         },
 
         user: {
@@ -87,6 +92,10 @@ let generateServerMakeCredRequestUV = (username, displayName, id) => {
 
         pubKeyCredParams: [
             {
+                type: "public-key",
+                alg: -257 // Value registered by this specification for "RS256"
+            },
+            {
                 type: "public-key", alg: -7 // "ES256" IANA COSE Algorithms registry
             }
         ],
@@ -94,8 +103,8 @@ let generateServerMakeCredRequestUV = (username, displayName, id) => {
         authenticatorSelection: {
             authenticatorAttachment: "cross-platform",
             requireResidentKey: false,
-            //userVerification: "required"
-            userVerification: "preferred"
+            userVerification: "required"
+            //userVerification: "preferred"
         }
     }
 };
@@ -343,8 +352,8 @@ let generateServerGetAssertionUV = (authenticators) => {
     return {
         challenge: randomBase64URLBuffer(32),
         allowCredentials: allowCredentials,
-        // userVerification: "required"
-        userVerification: "preferred"
+        userVerification: "required"
+        //userVerification: "preferred"
     }
 };
 
