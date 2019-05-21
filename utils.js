@@ -36,7 +36,7 @@ let generateServerMakeCredRequest = (username, displayName, id) => {
 
         rp: {
             name: "Nordea Bank"//,
-            //id: "nordea.dk"
+            //id: "nordea.dk" (for testing phishing attempts)
         },
 
         user: {
@@ -103,8 +103,7 @@ let generateServerMakeCredRequestUV = (username, displayName, id) => {
         authenticatorSelection: {
             authenticatorAttachment: "cross-platform",
             requireResidentKey: false,
-            userVerification: "required"
-            //userVerification: "preferred"
+            userVerification: "required" //must use PIN
         }
     }
 };
